@@ -21,6 +21,9 @@ app.get('/signup',(req,res)=>{
     res.sendFile(__dirname+"/signup.html");
 })
  
+app.get('/success',(req,res)=>{
+    res.sendFile(__dirname+"/success.html");
+})
 
 app.post('/signup',async (req,res)=>{
     const name =req.body.name;
@@ -35,6 +38,24 @@ app.post('/signup',async (req,res)=>{
     } catch (err) {
         console.log(err);
         
+    }
+})
+
+app.post('/login', async (req,res)=>{
+    const name = req.body.name;
+    const password = req.body.password;
+    try{
+        const user = await User.findOne({name,password});
+        if(user){
+            if(user.password === password){
+            res.status(400).redirect("/success")
+            }
+        }else{
+            console.log("user not found");
+        }
+    }
+    catch(err){
+        console.log(err);
     }
 })
 
