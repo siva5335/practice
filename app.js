@@ -48,7 +48,7 @@ app.post('/login', async (req,res)=>{
         const user = await User.findOne({name,password});
         if(user){
             if(user.password === password){
-            res.status(400).redirect("/success")
+            res.status(200).redirect("/success")
             }
         }else{
             console.log("user not found");
