@@ -11,3 +11,19 @@ const connectdb = async () =>{
 
 connectdb();
 
+const userschema = mongoose.Schema({
+    name:{
+        type:String,
+        required:true
+    },
+    password:{
+        type:String,
+        required:true,
+        minlength:4
+    }
+})
+
+const User = mongoose.model("user",userschema);
+
+module.exports = User;
+

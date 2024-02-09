@@ -1,4 +1,6 @@
 const express=require("express");
+const User = require("./connection");
+
 require("./connection");
 
 const app = express();
@@ -14,6 +16,8 @@ app.get('/login',(req,res)=>{
 app.get('/signup',(req,res)=>{
     res.sendFile(__dirname+"/signup.html");
 })
+
+
 
 
 app.listen(3000,()=>{
